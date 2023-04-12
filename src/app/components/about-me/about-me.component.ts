@@ -13,30 +13,14 @@ export class AboutMeComponent implements OnInit {
     this.login.LoginState.subscribe((state: boolean) => {
       this.loginState = state;
     })
-    this.aboutMeArr = this.data.aboutMeData
-    this.name = this.data.aboutMeData[0]
-    this.location = this.data.aboutMeData[1]
-    this.aboutTitle = this.data.aboutMeData[2]
-    this.aboutInfo = this.data.aboutMeData[3]
-    this.profileUrl = this.data.aboutMeData[4]
+    this.data.aboutReload.subscribe((dataReload:string[]) =>{
+      this.sectionArray = dataReload;
+      this.displayStyle = 'block';
+    })
+    this.sectionArray = this.data.aboutMeData
   }
-
   loginState: boolean = this.data.logData[0];
-
-  aboutMeArr: Array<string> =[]
-  name: string = '';
-  location: string = '';
-  aboutTitle: string = '';
-  aboutInfo: string = '';
-  profileUrl: string = '';
-
-
-  /*
-  name: string = 'Facundo Del VIgo';
-  location: string = 'Ciudad de Formosa, Argentina.';
-  aboutTitle: string = 'Acerca De';
-  aboutInfo: string = 'Estudiante de desarrollo web';
-  profileUrl: string = '../../../assets/images/profile.jpg'; */
+  sectionArray: string[] =[]
 
   displayStyle: string = 'block';
   elementHide(): void {

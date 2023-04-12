@@ -16,7 +16,7 @@ export class SkillsModalComponent {
   }
 
   removeField(): void {
-    this.sectionData[1].pop;
+    this.sectionData[1].pop();
   }
   openModal(): void {
     this.displayStyle = 'block';

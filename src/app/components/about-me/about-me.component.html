@@ -8,19 +8,19 @@
         <img
           id="profile-picture"
           class="rounded-circle ms-5 mt-2"
-          [src]="aboutMeArr[4]"
+          [src]="sectionArray[4]"
           alt="profile picture"
         />
-        <h2 class="ms-2 mt-4 text-con">{{aboutMeArr[0]}}</h2>
-        <p class="ms-2 ps-1 text-con">{{aboutMeArr[1]}}</p>
+        <h2 class="ms-2 mt-4 text-con">{{sectionArray[0]}}</h2>
+        <p class="ms-2 ps-1 text-con">{{sectionArray[1]}}</p>
       </div>
       <div
         id="about-me"
         class="col-md-6 position-relative"
         [ngStyle]="{ display: displayStyle }"
       >
-        <h3 class="text-con">{{aboutMeArr[2]}}</h3>
-        <p class="text-con ps-1">{{aboutMeArr[3]}}.</p>
+        <h3 class="text-con">{{sectionArray[2]}}</h3>
+        <p class="text-con ps-1">{{sectionArray[3]}}.</p>
         <!--boton de eliminacion-->
         <button
           id="about-me-button-delete"
@@ -32,7 +32,7 @@
         </button>
       </div>
       <!--boton de edicion-->
-      <app-about-me-modal *ngIf="loginState" [aboutArr]="aboutMeArr"></app-about-me-modal>
+      <app-about-me-modal *ngIf="loginState" [aboutArr]="sectionArray"></app-about-me-modal>
     </div>
   </div>
 </div>

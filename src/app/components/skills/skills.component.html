@@ -6,7 +6,7 @@
   <div class="container container-style bg-main text-con p-2 pb-2">
     <div class="row ms-2">
       <div class="col position-relative">
-        <h2 class="text-center">{{sectionData[0]}}</h2>
+        <h2 class="text-center">{{sectionArray[0]}}</h2>
         <!--boton de eliminacion-->
         <button
           id="skills-button-delete"
@@ -17,11 +17,11 @@
           <i class="bi bi-x-lg"></i>
         </button>
         <!--boton de edicion-->
-        <app-skills-modal *ngIf="loginState" [sectionData]="sectionData"></app-skills-modal>
+        <app-skills-modal *ngIf="loginState" [sectionData]="sectionArray"></app-skills-modal>
       </div>
     </div>
 
-    <div class="row pb-3" *ngFor="let item of sectionData[1]">
+    <div class="row pb-3" *ngFor="let item of sectionArray[1]">
       <div class="col">
         <p class="text-center">{{item[0]}}</p>
         <div class="progress w-75 mx-auto">

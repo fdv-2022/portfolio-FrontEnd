@@ -13,10 +13,13 @@ export class ProyectsComponent implements OnInit {
     this.login.LoginState.subscribe((state: boolean) => {
       this.loginState = state;
     })
-    this.projectArr = this.data.projectData;
+    this.data.projectReload.subscribe((dataReload: string[][]) =>{
+      this.sectionArray = dataReload;
+    })
+    this.sectionArray = this.data.projectData;
   }
 
-  projectArr: string[][] = []
+  sectionArray: string[][] = []
   loginState: boolean = this.data.logData[0];
   sectionDisplay: string = 'block';
   project1Display: string = 'block';

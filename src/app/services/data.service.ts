@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Output, EventEmitter } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
@@ -13,9 +13,9 @@ export class DataService{
   logData: boolean[] = JSON.parse(sessionStorage.getItem('log')!) || [false];
   aboutMeData: string[] = [];
   bannerData: string =  '../../../assets/images/banner.avif';
-  experienceData :  [string, string, Array<Array<string>>, Array<Array<string>>] = ['','',[],[]];
-  projectData: Array<Array<string>> = []
-  skillsData: [string, Array<Array<string>>] = ['', []]
+  experienceData :  [string, string, string[][], string[][]] = ['','',[],[]];
+  projectData: string[][] = []
+  skillsData: [string, string[][]] = ['', []]
 
   logDataSave(state:boolean):void {
     this.logData = [state];
@@ -81,37 +81,42 @@ export class DataService{
   aboutClear():void {
     localStorage.removeItem('aboutMe');
     this.aboutMeDataLoad();
-    window.location.reload()
+    this.aboutReload.emit(this.aboutMeData);
   }
 
   educationClear():void {
     localStorage.removeItem('education');
     this.experienceDataLoad();
-    window.location.reload()
+    this.experienceReload.emit(this.experienceData);
   }
 
   experienceClear():void {
     localStorage.removeItem('experience');
-    this.experienceDataLoad()
-    window.location.reload()
+    this.experienceDataLoad();
+    this.experienceReload.emit(this.experienceData);
   }
 
 
   project1Clear():void {
     localStorage.removeItem('project1');
     this.projectDataLoad();
-    window.location.reload()
+    this.projectReload.emit(this.projectData);
   }
 
   project2Clear():void {
     localStorage.removeItem('project2');
     this.projectDataLoad();
-    window.location.reload()
+    this.projectReload.emit(this.projectData);
   }
 
   skillsClear():void {
     localStorage.removeItem('skills');
     this.skillsDataLoad();
-    window.location.reload()
+    this.skillsReload.emit(this.skillsData);
   }
+
+  @Output() aboutReload = new EventEmitter<string[]>();
+  @Output() experienceReload = new EventEmitter<[string, string, string[][], string[][]]>();
+  @Output() projectReload = new EventEmitter<string[][]>();
+  @Output() skillsReload = new EventEmitter<[string, string[][]]>();
 }

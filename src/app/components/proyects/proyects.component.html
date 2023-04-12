@@ -12,14 +12,14 @@
         [ngStyle]="{ display: project1Display }"
       >
         <img
-          [src]="projectArr[0][0]"
+          [src]="sectionArray[0][0]"
           class="card-img-top"
           alt="portfolio page picture"
         />
         <div class="card-body">
-          <h5 class="card-title text-dark">{{ projectArr[0][1] }}</h5>
-          <p class="card-text text-dark">{{ projectArr[0][2] }}</p>
-          <a href={{projectArr[0][3]}} class="btn btn-primary">Visitar</a>
+          <h5 class="card-title text-dark">{{ sectionArray[0][1] }}</h5>
+          <p class="card-text text-dark">{{ sectionArray[0][2] }}</p>
+          <a href={{sectionArray[0][3]}} class="btn btn-primary">Visitar</a>
         </div>
         <!--boton de eliminacion-->
         <button
@@ -31,7 +31,7 @@
           <i class="bi bi-x-lg"></i>
         </button>
         <!--boton de edicion-->
-        <app-project1-modal *ngIf="loginState" [projectArr]="projectArr"></app-project1-modal>
+        <app-project1-modal *ngIf="loginState" [projectArr]="sectionArray"></app-project1-modal>
       </div>
       <!-- Card 2 -->
       <div
@@ -39,14 +39,14 @@
         [ngStyle]="{ display: project2Display }"
       >
         <img
-          [src]="projectArr[1][0]"
+          [src]="sectionArray[1][0]"
           class="card-img-top"
           alt="portfolio page picture"
         />
         <div class="card-body">
-          <h5 class="card-title text-dark">{{ projectArr[1][1] }}</h5>
-          <p class="card-text text-dark">{{ projectArr[1][2]}}</p>
-          <a href={{projectArr[1][3]}} class="btn btn-primary">Visitar</a>
+          <h5 class="card-title text-dark">{{ sectionArray[1][1] }}</h5>
+          <p class="card-text text-dark">{{ sectionArray[1][2]}}</p>
+          <a href={{sectionArray[1][3]}} class="btn btn-primary">Visitar</a>
         </div>
         <!--boton de eliminacion-->
         <button
@@ -58,7 +58,7 @@
           <i class="bi bi-x-lg"></i>
         </button>
         <!--boton de edicion-->
-        <app-project2-modal *ngIf="loginState" [projectArr]="projectArr"></app-project2-modal>
+        <app-project2-modal *ngIf="loginState" [projectArr]="sectionArray"></app-project2-modal>
       </div>
     </div>
   </div>

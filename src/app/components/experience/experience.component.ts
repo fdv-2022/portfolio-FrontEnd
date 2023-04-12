@@ -13,6 +13,10 @@ export class ExperienceComponent implements OnInit {
     this.login.LoginState.subscribe((state: boolean) => {
       this.loginState = state;
     })
+    this.data.experienceReload.subscribe((dataReload:[string, string, Array<Array<string>>, Array<Array<string>>]) =>{
+      this.sectionArray = dataReload;
+      this.sectionDisplay = 'block';
+    })
     this.sectionArray = this.data.experienceData;
   }
   sectionArray: [string, string, Array<Array<string>>, Array<Array<string>>] = ['','',[],[]];
