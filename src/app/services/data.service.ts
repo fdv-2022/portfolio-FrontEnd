@@ -12,7 +12,7 @@ export class DataService{
    }
   logData: boolean[] = JSON.parse(sessionStorage.getItem('log')!) || [false];
   aboutMeData: string[] = [];
-  bannerData: string =  '/assets/images/banner.avif';
+  bannerData: string =  'assets/images/banner.avif';
   experienceData :  [string, string, string[][], string[][]] = ['','',[],[]];
   projectData: string[][] = []
   skillsData: [string, string[][]] = ['', []]
@@ -33,11 +33,11 @@ export class DataService{
   }
 
   projectDataLoad():void {
-    this.projectData = [JSON.parse(localStorage.getItem('project1')!) || ['/assets/images/portfolio.png',
+    this.projectData = [JSON.parse(localStorage.getItem('project1')!) || ['assets/images/portfolio.png',
     'Portfolio Personal',
     'Portolio personal que incluye informacion personal, habilidades, experiencia, educacion y una recopilacion de los proyectos de apliaciones web propias.',
     '#'],
-    JSON.parse(localStorage.getItem('project2')!) ||  ['/assets/images/stocker.png',
+    JSON.parse(localStorage.getItem('project2')!) ||  ['assets/images/stocker.png',
     'Simulador de Stock',
     'SPA de un simulador de stock simple aplicando conocimientos de HTML CSS Y Javascript.',
     '#']];
