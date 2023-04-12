@@ -1,0 +1,40 @@
+<div
+  id="skills-section"
+  class="container-fluid bg-main pt-3 pb-3"
+  [ngStyle]="{ display: sectionDisplay }"
+>
+  <div class="container container-style bg-main text-con p-2 pb-2">
+    <div class="row ms-2">
+      <div class="col position-relative">
+        <h2 class="text-center">{{sectionData[0]}}</h2>
+        <!--boton de eliminacion-->
+        <button
+          id="skills-button-delete"
+          class="btn btn-success btn-circle"
+          (click)="sectionHide()"
+          *ngIf="loginState"
+        >
+          <i class="bi bi-x-lg"></i>
+        </button>
+        <!--boton de edicion-->
+        <app-skills-modal *ngIf="loginState" [sectionData]="sectionData"></app-skills-modal>
+      </div>
+    </div>
+
+    <div class="row pb-3" *ngFor="let item of sectionData[1]">
+      <div class="col">
+        <p class="text-center">{{item[0]}}</p>
+        <div class="progress w-75 mx-auto">
+          <div
+            class="progress-bar bg-success progress-bar-striped progress-bar-animated"
+            role="progressbar"
+            [ngStyle]="{ width: item[1]}"
+            aria-valuenow="50"
+            aria-valuemin="0"
+            aria-valuemax="100"
+          ></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

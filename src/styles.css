@@ -1,1 +1,173 @@
-/* You can add global styles to this file, and also import other style files */
+/*
+:root {
+--main-color: #2f0a6d;
+--secondary-color: #9d88b3;
+--contrast-color: #fdf7ff;
+--aux-color: #fffade;
+} */
+
+.container-style {
+  border: 3px solid #9d88b3;
+  border-radius: 15px;
+}
+
+.banner {
+  width: 100%;
+}
+
+#banner {
+  opacity: 0.7;
+}
+
+#profile-picture {
+  width: 150px;
+}
+
+/* #about-me {
+padding-top: 185px;
+} */
+
+small {
+  font-size: 70%;
+}
+
+.list-item {
+  font-weight: 400;
+}
+
+.footer {
+  height: 150px;
+}
+
+.text-main {
+  color: #2f0a6d;
+}
+
+.bg-main {
+  background-color: #2f0a6d;
+}
+
+.text-second {
+  color: #9d88b3;
+}
+
+.bg-second {
+  background-color: #9d88b3;
+}
+
+.text-con {
+  color: #fdf7ff;
+}
+
+.bg-con {
+  background-color: #fdf7ff;
+}
+
+.text-aux {
+  color: #fffade;
+}
+
+.bg-aux {
+  background-color: #fffade;
+}
+
+/* Botones de Edicion */
+
+.btn-circle {
+  border-radius: 50%;
+}
+
+#banner-button-edit {
+  position: absolute;
+  top: 40px;
+  right: 30px;
+}
+
+#about-me-button-delete {
+  position: absolute;
+  bottom: 20px;
+  left: 250px;
+  width: 41px;
+}
+
+#about-me-button-edit {
+  width: 41px;
+  position: absolute;
+  top: 15px;
+  right: 30px;
+}
+
+#experience-button-delete {
+  position: absolute;
+  top: 5px;
+  left: 188px;
+  width: 41px;
+}
+
+#experience-button-edit {
+  position: absolute;
+  top: 5px;
+  left: 238px;
+  width: 41px;
+}
+
+#education-button-delete {
+  position: absolute;
+  top: 0px;
+  left: 170px;
+  width: 41px;
+}
+
+#education-button-edit {
+  position: absolute;
+  top: 0px;
+  left: 220px;
+  width: 41px;
+}
+
+#skills-button-delete {
+  position: absolute;
+  top: 10px;
+  right: 30px;
+  width: 41px;
+}
+
+#skills-button-edit {
+  position: absolute;
+  top: 10px;
+  right: 80px;
+  width: 41px;
+}
+
+#proyect1-button-delete {
+  position: absolute;
+  bottom: 15px;
+  right: 30px;
+  width: 41px;
+}
+
+#proyect1-button-edit {
+  position: absolute;
+  bottom: 15px;
+  right: 80px;
+  width: 41px;
+}
+
+#proyect2-button-delete {
+  position: absolute;
+  bottom: 65px;
+  right: 30px;
+  width: 41px;
+}
+
+#proyect2-button-edit {
+  position: absolute;
+  bottom: 65px;
+  right: 80px;
+  width: 41px;
+}
+
+/* Modales */
+.modal-percent {
+  width: 80px;
+}

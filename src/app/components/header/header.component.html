@@ -1,0 +1,51 @@
+<!-- Navbar Inicio -->
+<nav class="navbar navbar-expand-sm bg-secondary">
+  <div class="container-fluid">
+    <!-- Seccion Izquierda Inicio -->
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="navbar-brand" href="#">
+          <img
+            [src]="logoUrl"
+            alt="Argentina Programa Logo"
+            style="width: 30px"
+            class="rounded"
+          />
+        </a>
+      </li>
+      <li class="nav-item pt-1">
+        <span class="navbar-text text-con"> #YoProgramo </span>
+      </li>
+    </ul>
+    <!-- Seccion Izquierda Fin -->
+
+    <!-- Seccion Derecha Inicio -->
+    <ul class="navbar-nav gap-3">
+      <li class="nav-item">
+        <a
+          class="btn btn-outline-info"
+          href="https://github.com/"
+          target="_blank"
+        >
+          <i class="bi bi-github"></i>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a
+          class="btn btn-outline-info"
+          href="https://ar.linkedin.com/"
+          target="_blank"
+        >
+          <i class="bi bi-linkedin"></i>
+        </a>
+      </li>
+      <li class="nav-item">
+        <app-login-modal></app-login-modal>
+      </li>
+    </ul>
+    <!-- Seccion Derecha Fin -->
+  </div>
+</nav>
+<!-- Navbar Fin -->
+
+<app-banner></app-banner>

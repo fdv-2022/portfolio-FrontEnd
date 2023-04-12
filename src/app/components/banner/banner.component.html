@@ -1,0 +1,11 @@
+<!-- Banner -->
+<div class="container-fluid bg-main pt-3 text-center position-relative">
+  <img
+    id="banner"
+    class="img-fluid rounded banner"
+    [src]="bannerUrl"
+    alt="banner"
+  />
+  <!--boton de edicion y modal-->
+  <app-banner-modal *ngIf="loginState"></app-banner-modal>
+</div>

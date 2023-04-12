@@ -1,0 +1,62 @@
+<div
+  class="container-fluid bg-main pt-3 pb-3"
+  [ngStyle]="{ display: sectionDisplay }"
+>
+  <div
+    id="container-experience"
+    class="container container-style bg-main text-con p-2"
+  >
+    <div class="row ms-2">
+      <div
+        id="experience-container"
+        class="container-fluid mt-2 mb-5 position-relative"
+        [ngStyle]="{ display: experienceDisplay }"
+      >
+        <h2>{{sectionArray[0]}}</h2>
+        <ul class="ms-2">
+          <li *ngFor="let item of sectionArray[2]">
+            <p class="list-item">
+              {{item[0]}} <small>{{item[1]}}</small>
+            </p>
+          </li>
+        </ul>
+        <button
+          id="experience-button-delete"
+          class="btn btn-success btn-circle"
+          (click)="experienceHide()"
+          *ngIf="loginState"
+        >
+          <i class="bi bi-x-lg"></i></button
+        ><!--boton de eliminacion-->
+        <app-experience-modal *ngIf="loginState" [sectionArray]="sectionArray"></app-experience-modal>
+        <!--boton de edicion-->
+      </div>
+      <div
+        id="education-container"
+        class="container-fluid position-relative"
+        [ngStyle]="{ display: educationDisplay }"
+      >
+        <h2>{{ sectionArray[1]}}</h2>
+        <ul class="ms-2">
+          <li *ngFor="let item of sectionArray[3]">
+            <p class="list-item">
+              {{ item[0] }}
+              <small>{{ item[1] }}</small>
+            </p>
+          </li>
+        </ul>
+        <!--boton de eliminacion-->
+        <button
+          id="education-button-delete"
+          class="btn btn-success btn-circle"
+          (click)="educationHide()"
+          *ngIf="loginState"
+        >
+          <i class="bi bi-x-lg"></i>
+        </button>
+        <!--boton de edicion-->
+        <app-education-modal *ngIf="loginState" [sectionArray]="sectionArray"></app-education-modal>
+      </div>
+    </div>
+  </div>
+</div>

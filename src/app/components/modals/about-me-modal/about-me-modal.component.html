@@ -1,0 +1,52 @@
+<button
+  id="about-me-button-edit"
+  class="btn btn-success btn-circle"
+  (click)="openModal()"
+>
+  <i class="bi bi-pencil"></i>
+</button>
+
+<div
+  class="modal text-dark"
+  id="modal-about-me"
+  tabindex="-1"
+  [ngStyle]="{ display: displayStyle }"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="about-label">Editar About Me</h5>
+        <button
+          type="button"
+          class="btn-close"
+          aria-label="Close"
+          (click)="saveChanges()"
+        ></button>
+      </div>
+        <div class="modal-body">
+            <div class="mb-3">
+              <label for="profile-file" class="form-label"
+                >Seleccione la nueva foto de perfil</label
+              >
+              <input class="form-control" type="file" id="profile-file" disabled/> <!-- Disabled porque necesita el backend para funcionar-->
+            </div>
+            <div id="modal-about-me-edit" class="row">
+              <div class="col">
+                <input type="text" class="w-100 me-2"  [(ngModel)]="this.aboutArr[0]">
+                <textarea rows="6" class="w-100 me-2" [(ngModel)]="this.aboutArr[1]"></textarea>
+              </div>
+              <div class="col">
+                <input type="text" class="w-100 me-2" [(ngModel)]="this.aboutArr[2]">
+                <textarea rows="6" class="w-100 me-2" [(ngModel)]="this.aboutArr[3]"></textarea>
+              </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" (click)="sectionRestore()">Reiniciar Seccion</button>
+          <button type="button" class="btn btn-success" (click)="saveChanges()">
+            Guardar
+          </button>
+        </div>
+    </div>
+  </div>
+</div>

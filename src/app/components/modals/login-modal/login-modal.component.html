@@ -1,0 +1,91 @@
+<button class="btn btn-primary" (click)="openModal()" *ngIf="!logged">Iniciar Sesion</button>
+<button class="btn btn-danger" (click)="logOut()" *ngIf="logged">Cerrar Sesion</button>
+
+<div
+  class="modal"
+  id="modal-login"
+  tabindex="-1"
+  [ngStyle]="{ display: displayStyle }"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="login-label">Gestion de Usuario</h5>
+        <button
+          type="button"
+          class="btn-close"
+          aria-label="Close"
+          (click)="closeModal()"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="myForm" (ngSubmit)="logIn()">
+          <div class="mb-3">
+            <label for="login-username" class="form-label">Usuario</label>
+            <input
+              type="text"
+              class="form-control"
+              id="login-username"
+              formControlName="username"
+            />
+          </div>
+          <ng-container *ngIf="myForm.invalid && (myForm.controls['username'].dirty || myForm.controls['username'].touched)"
+          class="alert">
+            <div class="text-danger mb-3" *ngIf="myForm.controls['username'].errors?.['required']">
+              Se requiere usuario.
+            </div>
+            <div class="text-danger mb-3" *ngIf="myForm.controls['username'].errors?.['minlength']">
+              El usuario debe tener un minimo de 5 letras.
+            </div>
+            <div class="text-danger mb-3" *ngIf="myForm.controls['username'].errors?.['maxlength']">
+              El usuario debe tener un maximo de 12 letras.
+              </div>
+            <div class="text-danger mb-3" *ngIf="myForm.controls['username'].errors?.['pattern']">
+              El usuario solo puede contener letras y numeros.
+            </div>
+          </ng-container>
+          <div class="mb-3">
+            <label for="login-password" class="form-label">Contraseña</label>
+            <input
+              type="password"
+              class="form-control"
+              id="login-password"
+              formControlName="password"
+            />
+          </div>
+          <ng-container *ngIf="myForm.invalid && (myForm.controls['password'].dirty || myForm.controls['password'].touched)"
+          class="alert">
+            <div class="text-danger mb-3" *ngIf="myForm.controls['password'].errors?.['required']">
+              Se requiere contraseña
+            </div>
+            <div class="text-danger mb-3"  *ngIf="myForm.controls['password'].errors?.['minlength']">
+              La contraseña debe tener un minimo de 5 letras.
+            </div>
+            <div class="text-danger mb-3" *ngIf="myForm.controls['password'].errors?.['maxlength']">
+              La contraseña debe tener un maximo de 12 letras.
+              </div>
+            <div class="text-danger mb-3" *ngIf="myForm.controls['password'].errors?.['pattern']">
+              La contraseña debe contener al menos 1 letra mayuscula, 1 letra minuscula y 1 numero.
+            </div>
+          </ng-container>
+          <div class="d-flex justify-content-center gap-2">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              (click)="closeModal()"
+            >
+              Cerrar
+            </button>
+            <button
+              type="submit"
+              class="btn btn-success"
+              [disabled]="!myForm.valid"
+            >
+              Ingresar
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

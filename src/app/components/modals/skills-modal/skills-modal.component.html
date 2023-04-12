@@ -1,0 +1,56 @@
+<button
+  id="skills-button-edit"
+  class="btn btn-success btn-circle"
+  (click)="openModal()"
+>
+  <i class="bi bi-pencil"></i>
+</button>
+<div
+  class="modal text-dark"
+  id="modal-about-me"
+  tabindex="-1"
+  [ngStyle]="{ display: displayStyle }"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="about-label">Editar Skills</h5>
+        <button
+          type="button"
+          class="btn-close"
+          aria-label="Close"
+          (click)="closeModal()"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <p>
+          Los elementos seran modificados en el orden en que se ingresen, si no
+          desea modificar uno de ellos dejelo vacio.
+        </p>
+        <ng-container *ngFor="let item of sectionData[1]">
+          <div class="input-group mb-3">
+            <input
+              type="text"
+              class="form-control"
+              [(ngModel)]="item[0]"
+            />
+            <span class="input-group-text">%</span>
+            <input
+              type="text"
+              class="form-control"
+              [(ngModel)]="item[1]"
+            />
+          </div>
+        </ng-container>
+        <button type="button" class="btn btn-info" (click)="addField()">Agregar Campo</button>
+        <button type="button" class="btn btn-danger" (click)="removeField()">Quitar Campo</button>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="sectionRestore()">Reiniciar Seccion</button>
+        <button type="button" class="btn btn-success" (click)="saveModal()">
+          Guardar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
