@@ -13,7 +13,7 @@ export class SkillsComponent implements OnInit {
     this.login.LoginState.subscribe((state: boolean) => {
       this.loginState = state;
     })
-    this.data.projectReload.subscribe((dataReload: [string, string[][]]) =>{
+    this.data.skillsReload.subscribe((dataReload: [string, string[][]]) =>{
       this.sectionArray = dataReload;
     })
     this.sectionArray = this.data.skillsData;
