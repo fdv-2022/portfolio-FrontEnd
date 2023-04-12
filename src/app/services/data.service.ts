@@ -23,7 +23,8 @@ export class DataService{
   }
 
   aboutMeDataLoad():void{
-    this.aboutMeData = JSON.parse(localStorage.getItem('aboutMe')!) || ['Facundo Del VIgo', 'Ciudad de Formosa, Argentina.', 'Acerca De', 'Estudiante de desarrollo web','../../../assets/images/profile.jpg'] || JSON.parse(localStorage.getItem('aboutMe')|| '');
+    this.aboutMeData = JSON.parse(localStorage.getItem('aboutMe')!) ||
+    ['Facundo Del VIgo', 'Ciudad de Formosa, Argentina.', 'Acerca De', 'Estudiante de desarrollo web','assets/images/profile.jpg'];
   }
 
   experienceDataLoad():void{
