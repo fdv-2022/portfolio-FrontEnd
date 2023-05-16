@@ -36,78 +36,78 @@ export class DataService {
 
    /*VINCULAR DELETE, JWT Y DEPLOY. */
   getAboutMeData(): Observable<string[]> {
-    return this.http.get<string[]>("http://localhost:8080/api/v1/personas/safe");
+    return this.http.get<string[]>("https://ap-portfolio-api-l5ed.onrender.com/api/v1/personas/safe");
   }
 
   putAboutMeData(data:string[]): Observable<Object> {
-    return this.http.put("http://localhost:8080/api/v1/personas", data);
+    return this.http.put("https://ap-portfolio-api-l5ed.onrender.com/api/v1/personas", data);
   }
 
   patchAboutMeData(data: string[]): Observable<Object>{
-    return this.http.patch("http://localhost:8080/api/v1/personas/aboutMe", data);
+    return this.http.patch("https://ap-portfolio-api-l5ed.onrender.com/api/v1/personas/aboutMe", data);
   }
 
   patchBannerData(data: string): Observable<Object>{
-    return this.http.patch("http://localhost:8080/api/v1/personas/banner", data);
+    return this.http.patch("https://ap-portfolio-api-l5ed.onrender.com/api/v1/personas/banner", data);
   }
 
   deleteAboutSection(): Observable<Object>{
-    return this.http.delete("http://localhost:8080/api/v1/personas");
+    return this.http.delete("https://ap-portfolio-api-l5ed.onrender.com/api/v1/personas");
   }
 
   getExperienceData(): Observable<string[][]>{
-    return this.http.get<string[][]>("http://localhost:8080/api/v1/experiencia/safe");
+    return this.http.get<string[][]>("https://ap-portfolio-api-l5ed.onrender.com/api/v1/experiencia/safe");
   }
 
   putExperienceData(data: string[][]): Observable<Object>{
-    return this.http.put("http://localhost:8080/api/v1/experiencia", data);
+    return this.http.put("https://ap-portfolio-api-l5ed.onrender.com/api/v1/experiencia", data);
   }
 
   deleteExperienceData(): Observable<Object>{
-    return this.http.delete("http://localhost:8080/api/v1/experiencia");
+    return this.http.delete("https://ap-portfolio-api-l5ed.onrender.com/api/v1/experiencia");
   }
 
   getEducationData(): Observable<string[][]>{
-    return this.http.get<string[][]>("http://localhost:8080/api/v1/educacion/safe");
+    return this.http.get<string[][]>("https://ap-portfolio-api-l5ed.onrender.com/api/v1/educacion/safe");
   }
 
   putEducationData(data: string[][]): Observable<Object>{
-    return this.http.put("http://localhost:8080/api/v1/educacion", data);
+    return this.http.put("https://ap-portfolio-api-l5ed.onrender.com/api/v1/educacion", data);
   }
 
   deleteEducationData():Observable<Object>{
-    return this.http.delete("http://localhost:8080/api/v1/educacion");
+    return this.http.delete("https://ap-portfolio-api-l5ed.onrender.com/api/v1/educacion");
   }
 
   getProyectData(): Observable<string[][]>{
-    return this.http.get<string[][]>("http://localhost:8080/api/v1/proyectos/safe");
+    return this.http.get<string[][]>("https://ap-portfolio-api-l5ed.onrender.com/api/v1/proyectos/safe");
   }
 
   putProyectData(data: string[], id: number): Observable<Object>{
-    let fullLink: string = "http://localhost:8080/api/v1/proyectos/" + id;
+    let fullLink: string = "https://ap-portfolio-api-l5ed.onrender.com/api/v1/proyectos/" + id;
     return this.http.put(fullLink, data);
   }
 
   deleteProyectData(id:number): Observable<Object>{
-    let fullLink: string = "http://localhost:8080/api/v1/proyectos/" + id;
+    let fullLink: string = "https://ap-portfolio-api-l5ed.onrender.com/api/v1/proyectos/" + id;
     console.log(id + "deleted");
     return this.http.delete(fullLink);
   }
 
   putAllProyectData(data: string[][]): Observable<Object>{
-    return this.http.put("http://localhost:8080/api/v1/proyectos", data)
+    return this.http.put("https://ap-portfolio-api-l5ed.onrender.com/api/v1/proyectos", data)
   }
 
   getSkillsData(): Observable<string[][]>{
-    return this.http.get<string[][]>("http://localhost:8080/api/v1/skills/safe")
+    return this.http.get<string[][]>("https://ap-portfolio-api-l5ed.onrender.com/api/v1/skills/safe")
   }
 
   putSkillsData(data: string[][]): Observable<Object> {
-    return this.http.put("http://localhost:8080/api/v1/skills", data);
+    return this.http.put("https://ap-portfolio-api-l5ed.onrender.com/api/v1/skills", data);
   }
 
   deleteSkillData(): Observable<Object> {
-    return this.http.delete("http://localhost:8080/api/v1/skills");
+    return this.http.delete("https://ap-portfolio-api-l5ed.onrender.com/api/v1/skills");
   }
 
   // HTTP REQUIESTS FIN//

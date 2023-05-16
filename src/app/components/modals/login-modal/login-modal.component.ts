@@ -35,7 +35,6 @@ export class LoginModalComponent {
     this.myForm.reset();
     this.logged = true;
   }
-  
 
   logOut(): void {
     this.login.LoginEvent(false);
