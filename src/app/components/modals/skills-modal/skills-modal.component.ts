@@ -28,11 +28,6 @@ export class SkillsModalComponent {
 
   saveModal(): void {
     this.displayStyle = 'none';
-    this.data.skillsSave();
-  }
-
-  sectionRestore():void {
-    this.displayStyle = 'none';
-    this.data.skillsClear();
+    this.data.putSkillsData(this.sectionData[1]).subscribe();
   }
 }

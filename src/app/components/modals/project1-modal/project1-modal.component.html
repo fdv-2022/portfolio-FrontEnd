@@ -24,30 +24,37 @@
         ></button>
       </div>
       <div class="modal-body">
-        <div class="mb-3">
-          <label for="project1-img-file" class="form-label"
-          >Selecciona nueva imagen /desactivado falta backend/</label>
-          <input class="form-control" type="file" id="project1-img-file" disabled/> <!-- disabled porque falta el backend -->
+        <div class="input-group mt-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text">Url Imagen</span>
+          </div>
+          <input type="text" class="form-control" placeholder="Url de Imagen del Proyecto" [(ngModel)]="projectImg">
         </div>
-        <label class="mt-1">Titulo
-          <input type="text" class="w-100 me-2 mt-1 .form-control-plaintext"  [(ngModel)]="this.projectArr[0][1]">
+
+        <div class="input-group mt-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text ">Titulo</span>
+          </div>
+          <input type="text" class="form-control" placeholder="Titulo del Proyecto" [(ngModel)]="projectArr[0][1]">
+        </div>
+
+        <label class="mt-3">Informacion
+          <textarea rows="6" class="me-2 mt-1 .form-control-plaintext" style="width: 460px;"  [(ngModel)]="projectArr[0][2]"></textarea>
         </label>
-        <label class="mt-1">Informacion
-          <textarea rows="6" class="w-100 me-2 mt-1 .form-control-plaintext" [(ngModel)]="this.projectArr[0][2]"></textarea>
-        </label>
-        <div class="input-group mb-3 mt-2">
-          <span class="input-group-text" id="link1">Url del Proyecto</span>
+
+        <div class="input-group mb-3 mt-3">
+          <span class="input-group-text" id="link2">Url del Proyecto</span>
           <input
             type="text"
             class="form-control .form-control-plaintext"
-            id="project1-link"
             placeholder="Project Link"
+            aria-label="Project Link"
+            aria-describedby="link2"
             [(ngModel)]="this.projectArr[0][3]"
           />
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary" (click)="sectionRestore()">Reiniciar Proyecto</button>
         <button type="button" class="btn btn-success" (click)="saveModal()">
           Guardar
         </button>

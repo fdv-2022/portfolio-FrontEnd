@@ -24,8 +24,7 @@
       </div>
       <div class="modal-body">
         <p>
-          Los elementos seran modificados en el orden en que se ingresen, si no
-          desea modificar uno de ellos dejelo vacio.
+          Si la lista no tiene elementos la seccion no sera visible en la proxima carga de la pagina.
         </p>
         <ng-container *ngFor="let item of sectionData[1]">
           <div class="input-group mb-3">
@@ -46,7 +45,6 @@
         <button type="button" class="btn btn-danger" (click)="removeField()">Quitar Campo</button>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary" (click)="sectionRestore()">Reiniciar Seccion</button>
         <button type="button" class="btn btn-success" (click)="saveModal()">
           Guardar
         </button>

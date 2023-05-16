@@ -21,12 +21,7 @@ export class ExperienceModalComponent{
 
   saveModal(): void {
     this.displayStyle = 'none';
-    this.data.experienceSave();
-  }
-
-  sectionRestore():void {
-    this.displayStyle = 'none';
-    this.data.experienceClear();
+    this.data.putExperienceData(this.sectionArray[2]).subscribe();
   }
 
   addField(): void {

@@ -13,8 +13,10 @@ export class BannerComponent implements OnInit {
   ngOnInit(): void {
     this.login.LoginState.subscribe((state: boolean) => {
       this.loginState = state;
-    })
-    this.bannerUrl = this.data.bannerData;
+    });
+    this.data.aboutReload.subscribe((data)=> this.bannerUrl = data[5]);
+    this.data.bannerReload.subscribe((data)=> this.bannerUrl = data);
+    this.data.getAboutMeData().subscribe((data)=> this.bannerUrl = data[5]);
   }
   loginState: boolean = this.data.logData[0];
   bannerUrl: string = '';

@@ -31,15 +31,18 @@ export class LoginModalComponent {
 
   logIn(): void{
     this.displayStyle = 'none';
-    if(this.myForm.value.username && this.myForm.value.password){
-      this.login.LoginEvent(true);
-      this.myForm.reset();
-      this.logged = true;
-    }
+    this.login.LoginEvent(true);
+    this.myForm.reset();
+    this.logged = true;
   }
+  
 
   logOut(): void {
     this.login.LoginEvent(false);
     this.logged = false;
+  }
+
+  reloadData(): void {
+    this.data.reloadData();
   }
 }

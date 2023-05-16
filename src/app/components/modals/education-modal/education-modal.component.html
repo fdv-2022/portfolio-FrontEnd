@@ -24,7 +24,7 @@
         ></button>
       </div>
       <div class="modal-body">
-        <input type="text" [(ngModel)]="sectionArray[1]" class="form-control-plaintext mb-2">
+        <p class="mb-2">Editar {{sectionArray[1]}} - Si la seccion no tiene elementos no sera visible en la proxima carga de la pagina.</p>
         <ng-container *ngFor="let item of sectionArray[3]" class="mb-1">
           <div class="input-group mb-3">
             <input
@@ -44,7 +44,6 @@
         <button type="button" class="btn btn-danger" (click)="removeField()">Quitar Campo</button>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary" (click)="sectionRestore()">Reiniciar Seccion</button>
         <button type="button" class="btn btn-success" (click)="saveModal()">
           Guardar
         </button>

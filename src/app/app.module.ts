@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule, ReactiveFormsModule, ValidationErrors } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -18,7 +19,6 @@ import { EducationModalComponent } from './components/modals/education-modal/edu
 import { SkillsModalComponent } from './components/modals/skills-modal/skills-modal.component';
 import { Project1ModalComponent } from './components/modals/project1-modal/project1-modal.component';
 import { Project2ModalComponent } from './components/modals/project2-modal/project2-modal.component';
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,9 +35,9 @@ import { Project2ModalComponent } from './components/modals/project2-modal/proje
     EducationModalComponent,
     SkillsModalComponent,
     Project1ModalComponent,
-    Project2ModalComponent,
+    Project2ModalComponent
   ],
-  imports: [BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule],
+  imports: [BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule, HttpClientModule],
   providers: [],
   bootstrap: [AppComponent],
 })

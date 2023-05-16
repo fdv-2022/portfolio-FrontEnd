@@ -1,4 +1,5 @@
 <button class="btn btn-primary" (click)="openModal()" *ngIf="!logged">Iniciar Sesion</button>
+<button class="btn btn-primary" (click)="reloadData()" *ngIf="logged">Reiniciar Contenido</button>
 <button class="btn btn-danger" (click)="logOut()" *ngIf="logged">Cerrar Sesion</button>
 
 <div

@@ -16,6 +16,29 @@ export class ExperienceComponent implements OnInit {
     this.data.experienceReload.subscribe((dataReload:[string, string, Array<Array<string>>, Array<Array<string>>]) =>{
       this.sectionArray = dataReload;
       this.sectionDisplay = 'block';
+      this.educationDisplay = 'block';
+      this.experienceDisplay = 'block';
+    })
+    this.data.getEducationData().subscribe((data) => {
+      this.sectionArray[3] = data;
+      if(this.sectionArray[3].length === 0){
+        this.educationDisplay = 'none';
+      }
+
+      if(this.experienceDisplay === 'none' && this.educationDisplay === 'none'){
+        this.sectionDisplay = 'none';
+      }
+
+    })
+    this.data.getExperienceData().subscribe((data) => {
+      this.sectionArray[2] = data;
+      if(this.sectionArray[2].length === 0){
+        this.experienceDisplay = 'none';
+      }
+
+      if(this.experienceDisplay === 'none' && this.educationDisplay === 'none'){
+        this.sectionDisplay = 'none';
+      }
     })
     this.sectionArray = this.data.experienceData;
   }
@@ -26,12 +49,14 @@ export class ExperienceComponent implements OnInit {
   sectionDisplay: string = 'block';
 
   educationHide(): void {
+    this.data.deleteEducationData().subscribe();
     this.educationDisplay = 'none';
     if (this.educationDisplay === 'none' && this.experienceDisplay === 'none') {
       this.sectionDisplay = 'none';
     }
   }
   experienceHide(): void {
+    this.data.deleteExperienceData().subscribe();
     this.experienceDisplay = 'none';
     if (this.educationDisplay === 'none' && this.experienceDisplay === 'none') {
       this.sectionDisplay = 'none';

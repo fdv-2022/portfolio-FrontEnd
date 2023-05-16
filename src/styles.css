@@ -23,10 +23,6 @@
   width: 150px;
 }
 
-/* #about-me {
-padding-top: 185px;
-} */
-
 small {
   font-size: 70%;
 }
@@ -70,6 +66,15 @@ small {
 .bg-aux {
   background-color: #fffade;
 }
+
+#proyect1-text{
+  margin-bottom: 50px;
+}
+
+#proyect2-text{
+  margin-bottom: 50px;
+}
+
 
 /* Botones de Edicion */
 
@@ -139,6 +144,12 @@ small {
   width: 41px;
 }
 
+#proyect1-button-visit{
+  position: absolute;
+  bottom: 15px;
+  left: 15px
+}
+
 #proyect1-button-delete {
   position: absolute;
   bottom: 15px;
@@ -153,16 +164,22 @@ small {
   width: 41px;
 }
 
+#proyect2-button-visit{
+  position: absolute;
+  bottom: 15px;
+  left: 15px
+}
+
 #proyect2-button-delete {
   position: absolute;
-  bottom: 65px;
+  bottom: 15px;
   right: 30px;
   width: 41px;
 }
 
 #proyect2-button-edit {
   position: absolute;
-  bottom: 65px;
+  bottom: 15px;
   right: 80px;
   width: 41px;
 }

@@ -23,11 +23,11 @@
         ></button>
       </div>
       <div class="modal-body">
-        <div class="mb-3">
-          <label for="banner-file" class="form-label"
-            >Seleccione el nuevo banner /desactivado falta backend/</label
-          >
-          <input class="form-control" type="file" id="banner-file" disabled />  <!-- disabled xq falta el backend -->
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text">Url Banner</span>
+          </div>
+          <input type="text" class="form-control" placeholder="Url" [(ngModel)]="bannerUrl">
         </div>
       </div>
       <div class="modal-footer">

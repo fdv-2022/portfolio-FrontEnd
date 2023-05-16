@@ -1,123 +1,147 @@
-import { Injectable, Output, EventEmitter } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Injectable, Output, EventEmitter} from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
-export class DataService{
-  constructor() {
-    this.aboutMeDataLoad();
-    this.experienceDataLoad();
-    this.projectDataLoad();
-    this.skillsDataLoad();
-   }
+export class DataService {
+  constructor(private http: HttpClient) {
+  }
+
+  /*                                               Contenedores de informacion.
+   Decidi utilizar Arrays porque me parecio la forma mas simple de renderizar los datos y vincular los formularios de edicion.
+   Los titulos de las secciones secundarias (Educacion, Experiencia, Proyectos, Skills) forman parte de los Array pero no se pueden modificar
+   debido a que no me parecio relevante la posibilidad de modificarlos para la funcionalidad de la aplicacion.
+   */
+
   logData: boolean[] = JSON.parse(sessionStorage.getItem('log')!) || [false];
   aboutMeData: string[] = [];
   bannerData: string =  'assets/images/banner.avif';
-  experienceData :  [string, string, string[][], string[][]] = ['','',[],[]];
+  experienceData :  [string, string, string[][], string[][]] = ['Experiencia','Educacion',[],[]];
   projectData: string[][] = []
-  skillsData: [string, string[][]] = ['', []]
+  skillsData: [string, string[][]] = ['Hard and Soft Skills', []]
 
+  /* Fin Contenedores de informacion */
+
+  /* Fetch inicial, toda la informacion que contienen las secciones se guarda en la API, al momento de la carga inicial se recupera la infomacion
+  y se la emite hacia los componentes para que lo que se renderiza tenga la informacion actualizada. */
+
+
+  /* HTTP REQUIESTS INICIO
+  - Los GET son recibidos en los componentes de las secciones para ser renderizados.
+  - Los PUT son enviados al accionarse el boton Guardar de los modales de edicion.
+  - Se usan 2 PATCH debido a que en la tabla de Persona de la base de datos
+   se encuentra tanto la informacion del componente About Me, como del componente Banner.*/
+
+   /*VINCULAR DELETE, JWT Y DEPLOY. */
+  getAboutMeData(): Observable<string[]> {
+    return this.http.get<string[]>("http://localhost:8080/api/v1/personas/safe");
+  }
+
+  putAboutMeData(data:string[]): Observable<Object> {
+    return this.http.put("http://localhost:8080/api/v1/personas", data);
+  }
+
+  patchAboutMeData(data: string[]): Observable<Object>{
+    return this.http.patch("http://localhost:8080/api/v1/personas/aboutMe", data);
+  }
+
+  patchBannerData(data: string): Observable<Object>{
+    return this.http.patch("http://localhost:8080/api/v1/personas/banner", data);
+  }
+
+  deleteAboutSection(): Observable<Object>{
+    return this.http.delete("http://localhost:8080/api/v1/personas");
+  }
+
+  getExperienceData(): Observable<string[][]>{
+    return this.http.get<string[][]>("http://localhost:8080/api/v1/experiencia/safe");
+  }
+
+  putExperienceData(data: string[][]): Observable<Object>{
+    return this.http.put("http://localhost:8080/api/v1/experiencia", data);
+  }
+
+  deleteExperienceData(): Observable<Object>{
+    return this.http.delete("http://localhost:8080/api/v1/experiencia");
+  }
+
+  getEducationData(): Observable<string[][]>{
+    return this.http.get<string[][]>("http://localhost:8080/api/v1/educacion/safe");
+  }
+
+  putEducationData(data: string[][]): Observable<Object>{
+    return this.http.put("http://localhost:8080/api/v1/educacion", data);
+  }
+
+  deleteEducationData():Observable<Object>{
+    return this.http.delete("http://localhost:8080/api/v1/educacion");
+  }
+
+  getProyectData(): Observable<string[][]>{
+    return this.http.get<string[][]>("http://localhost:8080/api/v1/proyectos/safe");
+  }
+
+  putProyectData(data: string[], id: number): Observable<Object>{
+    let fullLink: string = "http://localhost:8080/api/v1/proyectos/" + id;
+    return this.http.put(fullLink, data);
+  }
+
+  deleteProyectData(id:number): Observable<Object>{
+    let fullLink: string = "http://localhost:8080/api/v1/proyectos/" + id;
+    console.log(id + "deleted");
+    return this.http.delete(fullLink);
+  }
+
+  putAllProyectData(data: string[][]): Observable<Object>{
+    return this.http.put("http://localhost:8080/api/v1/proyectos", data)
+  }
+
+  getSkillsData(): Observable<string[][]>{
+    return this.http.get<string[][]>("http://localhost:8080/api/v1/skills/safe")
+  }
+
+  putSkillsData(data: string[][]): Observable<Object> {
+    return this.http.put("http://localhost:8080/api/v1/skills", data);
+  }
+
+  deleteSkillData(): Observable<Object> {
+    return this.http.delete("http://localhost:8080/api/v1/skills");
+  }
+
+  // HTTP REQUIESTS FIN//
+
+
+  /* Esta funcion permite enviar la informacion sobre el estado de la sesion a los componentes para mostrar los botones de edicion,
+  una vez que se cierra el navegador se requere al usuario un nuevo inicio de sesion para poder continuar con la edicion*/
   logDataSave(state:boolean):void {
     this.logData = [state];
     sessionStorage.setItem('log', JSON.stringify(this.logData));
   }
 
-  aboutMeDataLoad():void{
-    this.aboutMeData = JSON.parse(localStorage.getItem('aboutMe')!) ||
-    ['Facundo Del VIgo', 'Ciudad de Formosa, Argentina.', 'Acerca De', 'Estudiante de desarrollo web','assets/images/profile.jpg'];
+  /* Funcion para revertir todos los cambios realizados y recargar el contenido de la pagina */
+
+  reloadData(): void{
+    let aboutMeInitiaData: string[] = ["Facundo Del Vigo", "Ciudad de Formosa, Argentina.", "Acerca De", "Estudiante de desarrollo", "assets/images/profile.jpg", "assets/images/banner.avif"];
+    let experienceInitialData :  [string, string, string[][], string[][]] = ['Experiencia','Educacion',[["Argentina Programa", "(2022-2023)"]],[["Abogacia - Univesidad Nacional de Rosario.", "(2018-2023)"], ["Bachiller en Economia y Finanzas - Instituto Privado General San Martin (Formosa).", "(2008-2014)"]]];
+    let projectInitialData: string[][] = [    ["assets/images/portfolio.png", "Portfolio Web", "Portolio personal que incluye informacion personal, habilidades, experiencia, educacion y una recopilacion de los proyectos de apliaciones web propias", "https://fdv-2022.github.io/portfolio-FrontEnd/"],["assets/images/stocker.png","Simulador de Stock","SPA de un simulador de stock simple aplicando conocimientos de HTML CSS Y Javascript","#"]]
+    let skillsInitialData: [string, string[][]] = ['Hard and Soft Skills', [["Trabajo en Equipo","50%"],["Ingles","90%"],["Solucion de Problemas", "75%"]]]
+    this.putAboutMeData(aboutMeInitiaData).subscribe();
+    this.putEducationData(experienceInitialData[3]).subscribe();
+    this.putExperienceData(experienceInitialData[2]).subscribe();
+    this.putAllProyectData(projectInitialData).subscribe();
+    this.putSkillsData(skillsInitialData[1]).subscribe();
+    this.aboutReload.emit(aboutMeInitiaData);
+    this.experienceReload.emit(experienceInitialData);
+    this.projectReload.emit(projectInitialData);
+    this.skillsReload.emit(skillsInitialData);
   }
 
-  experienceDataLoad():void{
-    let experienceArr: [string, string[][]] = JSON.parse(localStorage.getItem('experience')!) || ['Experiencia', [['Argentina Programa.', '(2022-2023)']]];
-    let educationArr: [string, string[][]] = JSON.parse(localStorage.getItem('education')!) || ['Educacion', [['Abogacia - Univesidad Nacional de Rosario.', '(2022-2023)'], ['Bachiller en Economia y Finanzas - Instituto Privado General San Martin (Formosa).', '(2008-2014)']]]
-    this.experienceData = [experienceArr[0], educationArr[0], experienceArr[1], educationArr[1]];
-  }
-
-  projectDataLoad():void {
-    this.projectData = [JSON.parse(localStorage.getItem('project1')!) || ['assets/images/portfolio.png',
-    'Portfolio Personal',
-    'Portolio personal que incluye informacion personal, habilidades, experiencia, educacion y una recopilacion de los proyectos de apliaciones web propias.',
-    '#'],
-    JSON.parse(localStorage.getItem('project2')!) ||  ['assets/images/stocker.png',
-    'Simulador de Stock',
-    'SPA de un simulador de stock simple aplicando conocimientos de HTML CSS Y Javascript.',
-    '#']];
-  }
-
-  skillsDataLoad():void {
-    this.skillsData = JSON.parse(localStorage.getItem('skills')!) || ['Soft and Hard Skills',
-    [['Trabajo en Equipo', '50%'], [`Ingles`, '90%'], ['Solucion de Problemas', '75%'],]];
-  }
-
-  aboutSave():void{
-    localStorage.setItem('aboutMe',JSON.stringify(this.aboutMeData));
-  }
-
-
-  experienceSave():void{
-    let experienceArr: [string, string[][]] = [this.experienceData[0], this.experienceData[2]]
-    localStorage.setItem('experience',JSON.stringify(experienceArr));
-  }
-
-  educationSave():void{
-    let educationArr: [string, string[][]] = [this.experienceData[1], this.experienceData[3]]
-    localStorage.setItem('education',JSON.stringify(educationArr));
-  }
-
-  project1Save():void{
-    let project1Arr: string[] = this.projectData[0];
-    localStorage.setItem('project1',JSON.stringify(project1Arr));
-  }
-
-  project2Save():void{
-    let project2Arr: string[] = this.projectData[1];
-    localStorage.setItem('project2',JSON.stringify(project2Arr));
-  }
-
-
-  skillsSave():void{
-    localStorage.setItem('skills',JSON.stringify(this.skillsData));
-  }
-
-  aboutClear():void {
-    localStorage.removeItem('aboutMe');
-    this.aboutMeDataLoad();
-    this.aboutReload.emit(this.aboutMeData);
-  }
-
-  educationClear():void {
-    localStorage.removeItem('education');
-    this.experienceDataLoad();
-    this.experienceReload.emit(this.experienceData);
-  }
-
-  experienceClear():void {
-    localStorage.removeItem('experience');
-    this.experienceDataLoad();
-    this.experienceReload.emit(this.experienceData);
-  }
-
-
-  project1Clear():void {
-    localStorage.removeItem('project1');
-    this.projectDataLoad();
-    this.projectReload.emit(this.projectData);
-  }
-
-  project2Clear():void {
-    localStorage.removeItem('project2');
-    this.projectDataLoad();
-    this.projectReload.emit(this.projectData);
-  }
-
-  skillsClear():void {
-    localStorage.removeItem('skills');
-    this.skillsDataLoad();
-    this.skillsReload.emit(this.skillsData);
-  }
-
+  /*Event Emitters para enviar informacion que no se recarga de manera automatica, caso contrario seria necesario actualizar la pagina para mostrarla*/
   @Output() aboutReload = new EventEmitter<string[]>();
   @Output() experienceReload = new EventEmitter<[string, string, string[][], string[][]]>();
   @Output() projectReload = new EventEmitter<string[][]>();
   @Output() skillsReload = new EventEmitter<[string, string[][]]>();
+  @Output() bannerReload = new EventEmitter<string>();
 }

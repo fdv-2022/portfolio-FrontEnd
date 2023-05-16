@@ -10,10 +10,11 @@ export class Project2ModalComponent {
   constructor(private data:DataService){}
   @Input() projectArr: string[][] = [];
   displayStyle: string = 'none';
+  projectImg: string = "";
 
   openModal(): void {
     this.displayStyle = 'block';
-    console.log(this.projectArr[1])
+    this.projectImg = this.projectArr[1][0];
   }
 
   closeModal(): void {
@@ -21,12 +22,8 @@ export class Project2ModalComponent {
   }
 
   saveModal(): void {
-    this.displayStyle = 'none';
-    this.data.project2Save();
-  }
-
-  sectionRestore():void {
-    this.displayStyle = 'none';
-    this.data.project2Clear();
+      this.displayStyle = 'none';
+      this.projectArr[1][0]= this.projectImg;
+      this.data.putProyectData(this.projectArr[1], 2).subscribe();
   }
 }

@@ -24,25 +24,26 @@
         ></button>
       </div>
         <div class="modal-body">
-            <div class="mb-3">
-              <label for="profile-file" class="form-label"
-                >Seleccione la nueva foto de perfil /desactivado, falta backend/</label
-              >
-              <input class="form-control" type="file" id="profile-file" disabled/> <!-- Disabled porque necesita el backend para funcionar-->
+
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Url Foto de Perfil</span>
+              </div>
+              <input type="text" class="form-control" placeholder="Url" [(ngModel)]="imgString">
             </div>
+
             <div id="modal-about-me-edit" class="row">
               <div class="col">
-                <input type="text" class="w-100 me-2"  [(ngModel)]="this.aboutArr[0]">
-                <textarea rows="6" class="w-100 me-2" [(ngModel)]="this.aboutArr[1]"></textarea>
+                <input type="text" class="w-100 me-2"  [(ngModel)]="aboutArr[0]">
+                <textarea rows="6" class="w-100 me-2" [(ngModel)]="aboutArr[1]"></textarea>
               </div>
               <div class="col">
-                <input type="text" class="w-100 me-2" [(ngModel)]="this.aboutArr[2]">
-                <textarea rows="6" class="w-100 me-2" [(ngModel)]="this.aboutArr[3]"></textarea>
+                <input type="text" class="w-100 me-2" [(ngModel)]="aboutArr[2]">
+                <textarea rows="6" class="w-100 me-2" [(ngModel)]="aboutArr[3]"></textarea>
               </div>
             </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-primary" (click)="sectionRestore()">Reiniciar Seccion</button>
           <button type="button" class="btn btn-success" (click)="saveChanges()">
             Guardar
           </button>

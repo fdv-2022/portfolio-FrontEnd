@@ -9,6 +9,7 @@ import { LoginService } from 'src/app/services/login.service';
 })
 export class AboutMeComponent implements OnInit {
   constructor(private login:LoginService, private data:DataService) {}
+
   ngOnInit():void {
     this.login.LoginState.subscribe((state: boolean) => {
       this.loginState = state;
@@ -17,13 +18,24 @@ export class AboutMeComponent implements OnInit {
       this.sectionArray = dataReload;
       this.displayStyle = 'block';
     })
-    this.sectionArray = this.data.aboutMeData
+    this.data.getAboutMeData().subscribe((data) => {
+      for(let i = 0; i < 5 ; i++){
+      this.sectionArray.push(data[i]);
+      }
+      if(!this.sectionArray[2] && !this.sectionArray[3]){
+        this.displayStyle = 'none';
+      }
+    })
   }
+
   loginState: boolean = this.data.logData[0];
-  sectionArray: string[] =[]
+  sectionArray: string[] = [];
 
   displayStyle: string = 'block';
   elementHide(): void {
+    this.sectionArray[2] = ""
+    this.sectionArray[3] = ""
+    this.data.deleteAboutSection().subscribe();
     this.displayStyle = 'none';
   }
 }

@@ -21,12 +21,7 @@ export class EducationModalComponent {
 
   saveModal(): void {
     this.displayStyle = 'none';
-    this.data.educationSave();
-  }
-
-  sectionRestore():void {
-    this.displayStyle = 'none';
-    this.data.educationClear();
+    this.data.putEducationData(this.sectionArray[3]).subscribe((resp) => console.log(resp));
   }
 
   addField(): void {

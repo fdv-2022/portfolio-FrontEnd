@@ -9,10 +9,12 @@ import { DataService } from 'src/app/services/data.service';
 export class Project1ModalComponent {
   constructor(private data:DataService){}
   @Input() projectArr: string[][] = [];
+  projectImg: string = "";
   displayStyle: string = 'none';
 
   openModal(): void {
     this.displayStyle = 'block';
+    this.projectImg = this.projectArr[0][0];
   }
 
   closeModal(): void {
@@ -21,11 +23,7 @@ export class Project1ModalComponent {
 
   saveModal(): void {
     this.displayStyle = 'none';
-    this.data.project1Save();
-  }
-
-  sectionRestore():void {
-    this.displayStyle = 'none';
-    this.data.project1Clear();
+    this.projectArr[0][0]= this.projectImg;
+    this.data.putProyectData(this.projectArr[0], 1).subscribe();
   }
 }
